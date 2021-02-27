@@ -100,7 +100,7 @@ class Message(TenantAccessToken):
                 'text': text,
             }
         }
-        return self.send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
+        return self.batch_send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
 
     def batch_send_image_message(self, image_key, department_ids=None, open_ids=None, user_ids=None, appid=None, secret=None, ticket=None, tenant_key=None, token=None, storage=None):
         data = {
@@ -112,7 +112,7 @@ class Message(TenantAccessToken):
                 'image_key': image_key,
             }
         }
-        return self.send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
+        return self.batch_send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
 
     def batch_send_richtext_message(self, post, department_ids=None, open_ids=None, user_ids=None, appid=None, secret=None, ticket=None, tenant_key=None, token=None, storage=None):
         data = {
@@ -124,7 +124,7 @@ class Message(TenantAccessToken):
                 'post': post,
             }
         }
-        return self.send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
+        return self.batch_send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
 
     def batch_send_groupcard_message(self, share_chat_id, department_ids=None, open_ids=None, user_ids=None, appid=None, secret=None, ticket=None, tenant_key=None, token=None, storage=None):
         data = {
@@ -136,7 +136,7 @@ class Message(TenantAccessToken):
                 'share_chat_id': share_chat_id,
             }
         }
-        return self.send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
+        return self.batch_send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
 
     # 消息已读状态
     def message_read_info(self, message_id, appid=None, secret=None, ticket=None, tenant_key=None, token=None, storage=None):
