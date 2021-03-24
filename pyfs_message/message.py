@@ -10,6 +10,7 @@ class Message(TenantAccessToken):
         # 发送图片消息, Refer: https://open.feishu.cn/document/ukTMukTMukTM/uIDMxEjLyATMx4iMwETM
         # 发送富文本消息, Refer: https://open.feishu.cn/document/ukTMukTMukTM/uMDMxEjLzATMx4yMwETM
         # 发送群名片, Refer: https://open.feishu.cn/document/ukTMukTMukTM/ucjMxEjL3ITMx4yNyETM
+        # 发送消息卡片 - 新版, Support batch send or not, Refer: https://open.feishu.cn/document/ukTMukTMukTM/uYTNwUjL2UDM14iN1ATN
         self.SEND_MESSAGE = self.OPEN_DOMAIN + '/open-apis/message/v4/send/'
         # 批量发送消息, Refer: https://open.feishu.cn/document/ukTMukTMukTM/ucDO1EjL3gTNx4yN4UTM
         self.BATCH_SEND_MESSAGE = self.OPEN_DOMAIN + '/open-apis/message/v4/batch_send/'
@@ -78,6 +79,19 @@ class Message(TenantAccessToken):
             'content': {
                 'share_chat_id': share_chat_id,
             }
+        }
+        return self.send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
+
+    def send_card_message(self, card_content, chat_id=None, open_id=None, user_id=None, email=None, root_id=None, update_multi=False, appid=None, secret=None, ticket=None, tenant_key=None, token=None, storage=None):
+        data = {
+            'chat_id': chat_id,
+            'open_id': open_id,
+            'user_id': user_id,
+            'email': email,
+            'root_id': root_id,
+            'update_multi': update_multi,
+            'msg_type': 'interactive',
+            'card': card_content
         }
         return self.send_message(data, appid=appid, secret=secret, ticket=ticket, tenant_key=tenant_key, token=token, storage=storage)
 
@@ -159,6 +173,7 @@ send_richtext_message = message.send_richtext_message
 send_post_message = message.send_richtext_message
 send_groupcard_message = message.send_groupcard_message
 send_sharechat_message = message.send_groupcard_message
+send_card_message = message.send_card_message
 
 batch_send_message = message.batch_send_message
 batch_send_text_message = message.batch_send_text_message
